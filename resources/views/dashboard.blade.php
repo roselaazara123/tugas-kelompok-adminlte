@@ -27,6 +27,30 @@
     </ul>
   </nav>
 
+  <!-- Navbar Header -->
+<nav class="main-header navbar navbar-expand navbar-white navbar-light justify-content-between">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+    </li>
+    <li class="nav-item d-none d-sm-inline-block">
+      <a href="{{ url('/dashboard') }}" class="nav-link">Home</a>
+    </li>
+  </ul>
+
+  <!-- Tombol Logout di Kanan Navbar -->
+  <ul class="navbar-nav ml-auto pr-3">
+    <li class="nav-item">
+      <form method="POST" action="{{ route('logout') }}">
+        @csrf
+        <button type="submit" class="btn btn-danger btn-sm">
+          <i class="fas fa-sign-out-alt mr-1"></i> Logout
+        </button>
+      </form>
+    </li>
+  </ul>
+</nav>
+
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <a href="{{ url('/dashboard') }}" class="brand-link">
