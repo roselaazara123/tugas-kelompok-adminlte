@@ -5,9 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>@yield('title', 'Dashboard') - Project Kelompok</title>
 
-  <!-- Google Font -->
+  <!-- Google Font & Icons -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <!-- AdminLTE CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
@@ -25,14 +24,23 @@
         <a href="{{ url('/dashboard') }}" class="nav-link">Home</a>
       </li>
     </ul>
+    
+    <!-- Tombol Logout -->
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <form method="POST" action="{{ route('logout') }}">
+          @csrf
+          <button type="submit" class="btn btn-sm btn-danger"><i class="fas fa-sign-out-alt"></i> Logout</button>
+        </form>
+      </li>
+    </ul>
   </nav>
 
-  <!-- Main Sidebar Container -->
+  <!-- Sidebar -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <a href="{{ url('/dashboard') }}" class="brand-link">
       <span class="brand-text font-weight-light pl-3"><strong>App Kelompok</strong></span>
     </a>
-
     <div class="sidebar">
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
@@ -48,18 +56,14 @@
   </aside>
 
   <!-- Content Wrapper -->
-  <div class="content-wrapper">
+  <div class="content-wrapper pl-3 pr-3 pt-3">
     <div class="content-header">
       <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">@yield('title', 'Dashboard')</h1>
-          </div>
-        </div>
+        <h1 class="m-0">@yield('title', 'Dashboard')</h1>
       </div>
     </div>
 
-    <!-- Main content -->
+    <!-- Content -->
     <div class="content">
       <div class="container-fluid">
         @yield('content')
@@ -67,13 +71,12 @@
     </div>
   </div>
 
-  <!-- Main Footer -->
   <footer class="main-footer text-sm">
     <strong>Copyright &copy; {{ date('Y') }} Project Kelompok.</strong> All rights reserved.
   </footer>
 </div>
 
-<!-- REQUIRED SCRIPTS -->
+<!-- Scripts -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>

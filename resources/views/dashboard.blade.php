@@ -1,253 +1,180 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Dashboard Utama - Project Kelompok</title>
+@extends('layouts.app')
 
-  <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <!-- AdminLTE CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
-</head>
-<body class="hold-transition sidebar-mini">
-<div class="wrapper">
-
-  <!-- Navbar Header -->
-  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{ url('/dashboard') }}" class="nav-link">Home</a>
-      </li>
-    </ul>
-  </nav>
-
-  <!-- Navbar Header -->
-<nav class="main-header navbar navbar-expand navbar-white navbar-light justify-content-between">
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-    </li>
-    <li class="nav-item d-none d-sm-inline-block">
-      <a href="{{ url('/dashboard') }}" class="nav-link">Home</a>
-    </li>
-  </ul>
-
-  <!-- Tombol Logout di Kanan Navbar -->
-  <ul class="navbar-nav ml-auto pr-3">
-    <li class="nav-item">
-      <form method="POST" action="{{ route('logout') }}">
-        @csrf
-        <button type="submit" class="btn btn-danger btn-sm">
-          <i class="fas fa-sign-out-alt mr-1"></i> Logout
-        </button>
-      </form>
-    </li>
-  </ul>
-</nav>
-
-  <!-- Main Sidebar Container -->
-  <aside class="main-sidebar sidebar-dark-primary elevation-4">
-    <a href="{{ url('/dashboard') }}" class="brand-link">
-      <span class="brand-text font-weight-light pl-3"><strong>App Kelompok</strong></span>
-    </a>
-
-    <div class="sidebar">
-      <nav class="mt-2">
-        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
-          <li class="nav-item">
-            <a href="{{ url('/dashboard') }}" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>Dashboard</p>
-            </a>
-          </li>
-        </ul>
-      </nav>
+@section('content')
+<div class="app-content-header">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6"><h3 class="mb-0">Dashboard</h3></div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-end">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+        </ol>
+      </div>
     </div>
-  </aside>
+  </div>
+</div>
 
-  <!-- Content Wrapper -->
-  <div class="content-wrapper">
-    <div class="content-header">
-      <div class="container-fluid">
-        
-        <!-- Notifikasi Berhasil -->
-        @if(session('success'))
-          <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <i class="fas fa-check-circle mr-1"></i> {{ session('success') }}
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-        @endif
-
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1 class="m-0">Dashboard Utama</h1>
-          </div>
+<div class="app-content">
+  <div class="container-fluid">
+    <!-- Small Boxes -->
+    <div class="row">
+      <div class="col-lg-3 col-6">
+        <div class="small-box text-bg-primary">
+          <div class="inner"><h3>150</h3><p>New Orders</p></div>
+          <i class="small-box-icon bi bi-cart-fill"></i>
+          <a href="#" class="small-box-footer link-light link-underline-opacity-0">More info <i class="bi bi-link-45deg"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-3 col-6">
+        <div class="small-box text-bg-success">
+          <div class="inner"><h3>53<sup class="fs-5">%</sup></h3><p>Bounce Rate</p></div>
+          <i class="small-box-icon bi bi-bar-chart-fill"></i>
+          <a href="#" class="small-box-footer link-light link-underline-opacity-0">More info <i class="bi bi-link-45deg"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-3 col-6">
+        <div class="small-box text-bg-warning">
+          <div class="inner"><h3>44</h3><p>User Registrations</p></div>
+          <i class="small-box-icon bi bi-person-plus-fill"></i>
+          <a href="#" class="small-box-footer link-dark link-underline-opacity-0">More info <i class="bi bi-link-45deg"></i></a>
+        </div>
+      </div>
+      <div class="col-lg-3 col-6">
+        <div class="small-box text-bg-danger">
+          <div class="inner"><h3>65</h3><p>Unique Visitors</p></div>
+          <i class="small-box-icon bi bi-pie-chart-fill"></i>
+          <a href="#" class="small-box-footer link-light link-underline-opacity-0">More info <i class="bi bi-link-45deg"></i></a>
         </div>
       </div>
     </div>
 
-    <!-- Main content -->
-    <div class="content">
-      <div class="container-fluid">
-        
-        <!-- 1. KARTU STATISTIK DINAMIS -->
-        <div class="row">
-          <div class="col-lg-3 col-6">
-            <div class="small-box bg-info">
-              <div class="inner">
-                <h3>{{ $totalData }}</h3>
-                <p>Total Item Data</p>
-              </div>
-              <div class="icon"><i class="fas fa-box"></i></div>
-            </div>
+    <!-- Main Row -->
+    <div class="row">
+      <!-- Area Grafik -->
+      <div class="col-lg-7">
+        <div class="card mb-4">
+          <div class="card-header border-0">
+            <h3 class="card-title">Sales Value</h3>
           </div>
-
-          <div class="col-lg-3 col-6">
-            <div class="small-box bg-success">
-              <div class="inner">
-                <h3>{{ $totalSelesai }}</h3>
-                <p>Project Selesai</p>
-              </div>
-              <div class="icon"><i class="fas fa-check-circle"></i></div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-6">
-            <div class="small-box bg-warning">
-              <div class="inner">
-                <h3>{{ $totalProses }}</h3>
-                <p>Dalam Proses</p>
-              </div>
-              <div class="icon"><i class="fas fa-spinner"></i></div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-6">
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3>{{ $totalPending }}</h3>
-                <p>Project Pending</p>
-              </div>
-              <div class="icon"><i class="fas fa-clock"></i></div>
-            </div>
+          <div class="card-body">
+            <div id="revenue-chart" style="min-height: 300px; width: 100%;"></div>
           </div>
         </div>
 
-        <!-- 2. TABEL DATA DINAMIS -->
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="card card-primary card-outline">
-              <div class="card-header border-0">
-                <h3 class="card-title font-weight-bold">
-                  <i class="fas fa-list mr-1"></i> Data Ringkasan Project
-                </h3>
-                <div class="card-tools">
-                  <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalTambah">
-                    <i class="fas fa-plus mr-1"></i> Tambah Data Baru
-                  </button>
+        <div class="card direct-chat direct-chat-primary mb-4">
+          <div class="card-header">
+            <h3 class="card-title">Direct Chat</h3>
+            <div class="card-tools">
+              <span title="3 New Messages" class="badge text-bg-primary">3</span>
+              <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse"><i class="bi bi-minus-lg"></i></button>
+              <button type="button" class="btn btn-tool" data-lte-toggle="card-remove"><i class="bi bi-x-lg"></i></button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="direct-chat-messages p-3" style="height: 250px; overflow-y: auto;">
+              <div class="direct-chat-msg">
+                <div class="direct-chat-infos clearfix">
+                  <span class="direct-chat-name float-start">Alexander Pierce</span>
+                  <span class="direct-chat-timestamp float-end">23 Jan 5:37 pm</span>
                 </div>
+                <img class="direct-chat-img rounded-circle" src="https://adminlte.io/themes/v3/dist/img/user1-128x128.jpg" alt="user image" style="width:35px">
+                <div class="direct-chat-text bg-dark p-2 rounded mt-1">Working with AdminLTE on a great new app! Wanna join?</div>
               </div>
-              <div class="card-body table-responsive p-0">
-                <table class="table table-striped table-valign-middle">
-                  <thead>
-                    <tr>
-                      <th>No</th>
-                      <th>Nama Project / Tugas</th>
-                      <th>Kategori</th>
-                      <th>Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    @forelse($projects as $index => $item)
-                      <tr>
-                        <td>{{ $index + 1 }}</td>
-                        <td>{{ $item->nama_project }}</td>
-                        <td>{{ $item->kategori }}</td>
-                        <td>
-                          @if($item->status == 'Selesai')
-                            <span class="badge badge-success">Selesai</span>
-                          @elseif($item->status == 'Dalam Proses')
-                            <span class="badge badge-primary">Dalam Proses</span>
-                          @else
-                            <span class="badge badge-secondary">Pending</span>
-                          @endif
-                        </td>
-                      </tr>
-                    @empty
-                      <tr>
-                        <td colspan="4" class="text-center text-muted p-4">
-                          <em>Belum ada data project. Klik tombol <strong>Tambah Data Baru</strong> di atas untuk mengisi data.</em>
-                        </td>
-                      </tr>
-                    @endforelse
-                  </tbody>
-                </table>
+              <div class="direct-chat-msg right text-end mt-3">
+                <div class="direct-chat-infos clearfix">
+                  <span class="direct-chat-name float-end">Sarah Bullock</span>
+                  <span class="direct-chat-timestamp float-start">23 Jan 6:10 pm</span>
+                </div>
+                <img class="direct-chat-img rounded-circle float-end" src="https://adminlte.io/themes/v3/dist/img/user3-128x128.jpg" alt="user image" style="width:35px">
+                <div class="direct-chat-text bg-primary text-white p-2 rounded mt-1 d-inline-block">I would love to.</div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer">
+            <form action="#" method="post">
+              <div class="input-group">
+                <input type="text" name="message" placeholder="Type Message ..." class="form-control">
+                <span class="input-group-append">
+                  <button type="button" class="btn btn-primary">Send</button>
+                </span>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Area Peta -->
+      <div class="col-lg-5">
+        <div class="card text-bg-primary mb-4">
+          <div class="card-header border-0">
+            <h3 class="card-title">Sales Value</h3>
+            <div class="card-tools">
+              <button type="button" class="btn btn-primary btn-sm" data-lte-toggle="card-collapse">
+                <i class="bi bi-minus-lg"></i>
+              </button>
+            </div>
+          </div>
+          <div class="card-body">
+            <div id="world-map" style="height: 220px; width: 100%;"></div>
+          </div>
+          <div class="card-footer bg-transparent border-0 text-white">
+            <div class="row text-center">
+              <div class="col-4">
+                <div class="fw-bold fs-5">8,390</div>
+                <div class="text-white-50">Visitors</div>
+              </div>
+              <div class="col-4">
+                <div class="fw-bold fs-5">30%</div>
+                <div class="text-white-50">Online</div>
+              </div>
+              <div class="col-4">
+                <div class="fw-bold fs-5">13,000</div>
+                <div class="text-white-50">Sales</div>
               </div>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   </div>
-
-  <!-- Footer -->
-  <footer class="main-footer text-sm">
-    <strong>Copyright &copy; {{ date('Y') }} Project Kelompok.</strong> All rights reserved.
-  </footer>
 </div>
+@endsection
 
-<!-- MODAL POPUP FORM TAMBAH DATA -->
-<div class="modal fade" id="modalTambah" tabindex="-1" aria-labelledby="modalTambahLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header bg-primary text-white">
-        <h5 class="modal-title" id="modalTambahLabel"><i class="fas fa-plus-circle mr-1"></i> Tambah Project Baru</h5>
-        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form action="{{ route('projects.store') }}" method="POST">
-        @csrf
-        <div class="modal-body">
-          <div class="form-group">
-            <label for="nama_project">Nama Project / Tugas</label>
-            <input type="text" name="nama_project" class="form-control" placeholder="Contoh: Fitur Login Admin" required>
-          </div>
-          <div class="form-group">
-            <label for="kategori">Kategori</label>
-            <input type="text" name="kategori" class="form-control" placeholder="Contoh: Backend / Frontend" required>
-          </div>
-          <div class="form-group">
-            <label for="status">Status Progress</label>
-            <select name="status" class="form-control" required>
-              <option value="">-- Pilih Status --</option>
-              <option value="Dalam Proses">Dalam Proses</option>
-              <option value="Pending">Pending</option>
-              <option value="Selesai">Selesai</option>
-            </select>
-          </div>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-          <button type="submit" class="btn btn-primary"><i class="fas fa-save mr-1"></i> Simpan Data</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
+@push('scripts')
+<script>
+  window.addEventListener('load', function () {
+    // 1. ApexCharts
+    if (typeof ApexCharts !== 'undefined') {
+      const sales_chart_options = {
+        series: [
+          { name: 'Digital Goods', data: [28, 48, 40, 19, 86, 27, 90] },
+          { name: 'Electronics', data: [65, 59, 80, 81, 56, 55, 40] }
+        ],
+        chart: { height: 300, type: 'area', toolbar: { show: false } },
+        legend: { show: false },
+        colors: ['#0d6efd', '#20c997'],
+        dataLabels: { enabled: false },
+        stroke: { curve: 'smooth' },
+        xaxis: { categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'] },
+        tooltip: { theme: 'dark' }
+      };
 
-<!-- SCRIPTS -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
-</body>
-</html>
+      const sales_chart = new ApexCharts(document.querySelector("#revenue-chart"), sales_chart_options);
+      sales_chart.render();
+    }
+
+    // 2. jsVectorMap
+    if (typeof jsVectorMap !== 'undefined') {
+      const map = new jsVectorMap({
+        selector: '#world-map',
+        map: 'world',
+        visualizeData: {
+          scale: ['#eeeeee', '#007bff'],
+          values: { US: 2920, DE: 1300, JP: 1000, BR: 600, IN: 500, GB: 320, RU: 3000 }
+        }
+      });
+    }
+  });
+</script>
+@endpush

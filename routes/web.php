@@ -8,28 +8,43 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    // Menyiapkan SELURUH variabel yang dipanggil di dashboard.blade.php
-    $totalData = 0; 
-    $totalSelesai = 0;
-    $totalProses = 0;
-    $totalPending = 0;
-    $projects = collect(); // Mengirimkan koleksi data kosong agar tabel tidak error
+Route::middleware(['auth', 'verified'])->group(function () {
+    
+    // Route Dashboard 1
+    Route::get('/dashboard', function () {
+        $totalData = 0; 
+        $totalSelesai = 0;
+        $totalProses = 0;
+        $totalPending = 0;
+        $projects = collect();
 
-    return view('dashboard', compact(
-        'totalData', 
-        'totalSelesai', 
-        'totalProses', 
-        'totalPending', 
-        'projects'
-    ));
-})->middleware(['auth', 'verified'])->name('dashboard');
+        return view('dashboard', compact(
+            'totalData', 
+            'totalSelesai', 
+            'totalProses', 
+            'totalPending', 
+            'projects'
+        ));
+    })->name('dashboard');
 
-// Route penampung form 'Tambah Data Baru' agar tombol Simpan Data tidak error
+    // Route Dashboard 2
+    Route::get('/dashboard2', function () {
+        return view('dashboard2');
+    })->name('dashboard2');
+
+    // Route Dashboard 3
+    Route::get('/dashboard3', function () {
+        return view('dashboard3');
+    })->name('dashboard3');
+
+});
+
+// Route penampung form 'Tambah Data Baru'
 Route::post('/projects', function (Request $request) {
     return redirect()->back()->with('success', 'Data project berhasil disimpan!');
 })->name('projects.store')->middleware('auth');
 
+// Route Profile
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
