@@ -2,85 +2,61 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
+use App\Http\Controllers\ProfileController;
 
-// Halaman utama (/) langsung menampilkan dashboard tanpa login
+// Tampilkan halaman welcome (pilihan Login / Register)
 Route::get('/', function () {
-<<<<<<< HEAD
     return view('welcome');
 });
 
+// Route Khusus Setelah Login
 Route::middleware(['auth', 'verified'])->group(function () {
     
-    // Route Dashboard 1
+    // Route Dashboard
     Route::get('/dashboard', function () {
         $totalData = 0; 
         $totalSelesai = 0;
         $totalProses = 0;
         $totalPending = 0;
-        $projects = collect();
 
         return view('dashboard', compact(
             'totalData', 
             'totalSelesai', 
             'totalProses', 
-            'totalPending', 
-            'projects'
+            'totalPending'
         ));
     })->name('dashboard');
 
-    // Route Dashboard 2
     Route::get('/dashboard2', function () {
         return view('dashboard2');
     })->name('dashboard2');
 
-    // Route Dashboard 3
     Route::get('/dashboard3', function () {
         return view('dashboard3');
     })->name('dashboard3');
 
-});
-
-// Route penampung form 'Tambah Data Baru'
-Route::post('/projects', function (Request $request) {
-    return redirect()->back()->with('success', 'Data project berhasil disimpan!');
-})->name('projects.store')->middleware('auth');
-
-// Route Profile
-Route::middleware('auth')->group(function () {
+    // Route Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-=======
-    $totalData = 0; 
-    $totalSelesai = 0;
-    $totalProses = 0;
-    $totalPending = 0;
-    $projects = collect();
 
-    return view('dashboard', compact(
-        'totalData', 
-        'totalSelesai', 
-        'totalProses', 
-        'totalPending', 
-        'projects'
-    ));
->>>>>>> origin/table-apeng
+    // Route Halaman Lainnya
+    Route::get('/table1', function () {
+        return view('table1');
+    })->name('table1');
+
+    Route::get('/datatable', function () {
+        return view('datatable');
+    });
+
+    Route::get('/apexcharts', function () {
+        return view('apexcharts');
+    });
+
+    Route::post('/projects', function (Request $request) {
+        return redirect()->back()->with('success', 'Data project berhasil disimpan!');
+    })->name('projects.store');
 });
 
-// Route penampung form
-Route::post('/projects', function (Request $request) {
-    return redirect()->back()->with('success', 'Data project berhasil disimpan!');
-})->name('projects.store');
-// Route dummy logout agar tombol logout di AdminLTE tidak crash
-Route::post('/logout', function () {
-    return redirect('/');
-})->name('logout');
-Route::get('/table1', function () {
-    return view('table1');
-})->name('table1');
-Route::get('/datatable', function () {
-    return view('datatable');
-});
-Route::get('/apexcharts', function () {
-    return view('apexcharts');
-});
+// File Route Autentikasi (Breeze/Fortify)
+require __DIR__.'/auth.php';
