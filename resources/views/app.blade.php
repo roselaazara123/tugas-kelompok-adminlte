@@ -20,12 +20,47 @@
 
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <!-- Left navbar links -->
     <ul class="navbar-nav">
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{ url('/') }}" class="nav-link">Home</a>
+        <a href="{{ url('/') }}" class="nav-link"><i class="fas fa-th-large mr-1"></i> Live preview</a>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block">
+        <a href="#" class="nav-link"><i class="fas fa-book mr-1"></i> Documentation</a>
+      </li>
+    </ul>
+
+    <!-- Right navbar links (Tambahan Baru) -->
+    <ul class="navbar-nav ml-auto align-items-center">
+      <!-- Messages Dropdown -->
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="far fa-comments"></i>
+          <span class="badge badge-danger navbar-badge">3</span>
+        </a>
+      </li>
+      <!-- Notifications Dropdown -->
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <i class="far fa-bell"></i>
+          <span class="badge badge-warning navbar-badge">15</span>
+        </a>
+      </li>
+      <!-- Fullscreen -->
+      <li class="nav-item">
+        <a class="nav-link" data-widget="fullscreen" href="#" role="button">
+          <i class="fas fa-expand-arrows-alt"></i>
+        </a>
+      </li>
+      <!-- User Profile (Orang Pusing) -->
+      <li class="nav-item d-flex align-items-center ml-2">
+        <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center mr-2" style="width: 32px; height: 32px; font-size: 0.8rem;">
+          OP
+        </div>
+        <span class="d-none d-md-inline text-dark font-weight-normal">Orang Pusing</span>
       </li>
     </ul>
   </nav>
@@ -87,6 +122,37 @@
                 <a href="{{ url('/apexcharts') }}" class="nav-link {{ Request::is('apexcharts') ? 'active' : '' }}">
                   <i class="far fa-circle nav-icon"></i>
                   <p>ApexCharts</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <!-- Dropdown Menu Mailbox (Updated) -->
+          <li class="nav-item {{ Request::is('mailbox') || Request::is('read') || Request::is('compose') ? 'menu-open' : '' }}">
+            <a href="#" class="nav-link {{ Request::is('mailbox') || Request::is('read') || Request::is('compose') ? 'active' : '' }}">
+              <i class="nav-icon fas fa-envelope"></i>
+              <p>
+                Mailbox
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ url('/mailbox') }}" class="nav-link {{ Request::is('mailbox') ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Inbox</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url('/read') }}" class="nav-link {{ Request::is('read') ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Read Message</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ url('/compose') }}" class="nav-link {{ Request::is('compose') ? 'active' : '' }}">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Compose</p>
                 </a>
               </li>
             </ul>

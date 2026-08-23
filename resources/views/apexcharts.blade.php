@@ -6,9 +6,9 @@
 <div class="row">
   <!-- Line Chart -->
   <div class="col-md-6">
-    <div class="card card-outline card-primary">
+    <div class="card card-outline" style="border-top: 3px solid #ff85a2;">
       <div class="card-header">
-        <h3 class="card-title font-weight-bold">Line Chart</h3>
+        <h3 class="card-title font-weight-bold" style="color: #4a2c40;">Line Chart</h3>
       </div>
       <div class="card-body">
         <div id="line-chart"></div>
@@ -18,9 +18,9 @@
 
   <!-- Area Chart -->
   <div class="col-md-6">
-    <div class="card card-outline card-primary">
+    <div class="card card-outline" style="border-top: 3px solid #b5179e;">
       <div class="card-header">
-        <h3 class="card-title font-weight-bold">Area Chart</h3>
+        <h3 class="card-title font-weight-bold" style="color: #4a2c40;">Area Chart</h3>
       </div>
       <div class="card-body">
         <div id="area-chart"></div>
@@ -41,8 +41,8 @@
     }],
     chart: { height: 350, type: 'line', zoom: { enabled: false } },
     dataLabels: { enabled: false },
-    stroke: { curve: 'smooth', width: 3 },
-    colors: ['#007bff'],
+    stroke: { curve: 'smooth', width: 4 },
+    colors: ['#ff85a2'], // Warna Pink Soft/Cute
     xaxis: {
       categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
     },
@@ -66,8 +66,16 @@
     }],
     chart: { height: 350, type: 'area' },
     dataLabels: { enabled: false },
-    stroke: { curve: 'smooth' },
-    colors: ['#007bff', '#28a745'],
+    stroke: { curve: 'smooth', width: 3 },
+    colors: ['#7209b7', '#4cc9f0'], // Warna Soft Purple & Pastel Mint/Cyan
+    fill: {
+      type: 'gradient',
+      gradient: {
+        shadeIntensity: 1,
+        opacityFrom: 0.6,
+        opacityTo: 0.2,
+      }
+    },
     xaxis: {
       categories: ['Jan \'25', 'Feb \'25', 'Mar \'25', 'Apr \'25', 'May \'25', 'Jun \'25', 'Jul \'25']
     }

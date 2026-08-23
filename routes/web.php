@@ -37,3 +37,12 @@ Route::get('/datatable', function () {
 Route::get('/apexcharts', function () {
     return view('apexcharts');
 });
+Route::get('/mailbox', function () {
+    return view('mailbox');
+});
+Route::get('/read', function () {
+    return view('read');
+});
+Route::get('/compose', function () {
+    return view('compose');
+});
