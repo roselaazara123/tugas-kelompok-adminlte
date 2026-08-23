@@ -1,20 +1,15 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 
+// Halaman utama (/) langsung menampilkan dashboard tanpa login
 Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/dashboard', function () {
-    // Menyiapkan SELURUH variabel yang dipanggil di dashboard.blade.php
     $totalData = 0; 
     $totalSelesai = 0;
     $totalProses = 0;
     $totalPending = 0;
-    $projects = collect(); // Mengirimkan koleksi data kosong agar tabel tidak error
+    $projects = collect();
 
     return view('dashboard', compact(
         'totalData', 
@@ -23,17 +18,22 @@ Route::get('/dashboard', function () {
         'totalPending', 
         'projects'
     ));
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-// Route penampung form 'Tambah Data Baru' agar tombol Simpan Data tidak error
-Route::post('/projects', function (Request $request) {
-    return redirect()->back()->with('success', 'Data project berhasil disimpan!');
-})->name('projects.store')->middleware('auth');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+// Route penampung form
+Route::post('/projects', function (Request $request) {
+    return redirect()->back()->with('success', 'Data project berhasil disimpan!');
+})->name('projects.store');
+// Route dummy logout agar tombol logout di AdminLTE tidak crash
+Route::post('/logout', function () {
+    return redirect('/');
+})->name('logout');
+Route::get('/table1', function () {
+    return view('table1');
+})->name('table1');
+Route::get('/datatable', function () {
+    return view('datatable');
+});
+Route::get('/apexcharts', function () {
+    return view('apexcharts');
+});
