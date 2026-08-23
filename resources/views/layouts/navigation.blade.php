@@ -93,6 +93,20 @@
           </a>
         </li>
 
+        <li class="nav-item">
+          <a href="{{ route('error1') }}" class="nav-link {{ request()->routeIs('error1') ? 'active' : '' }}">
+            <i class="nav-icon bi bi-exclamation-triangle"></i>
+            <p>Error 1</p>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a href="{{ route('error2') }}" class="nav-link {{ request()->routeIs('error2') ? 'active' : '' }}">
+            <i class="nav-icon bi bi-exclamation-circle"></i>
+            <p>Error 2</p>
+          </a>
+        </li>
+
       </ul>
     </nav>
   </div>
