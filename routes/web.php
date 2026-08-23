@@ -68,3 +68,11 @@ Route::get('/datatable', function () {
 Route::get('/apexcharts', function () {
     return view('apexcharts');
 });
+
+Route::get('/error1', function () {
+    return view('error1');
+})->name('error1');
+
+Route::get('/error2', function () {
+    return view('error2');
+})->name('error2');
