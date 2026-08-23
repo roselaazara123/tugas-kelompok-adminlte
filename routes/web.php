@@ -40,7 +40,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // Route Halaman Lainnya
+    // Route Halaman Tables & Charts
     Route::get('/table1', function () {
         return view('table1');
     })->name('table1');
@@ -53,25 +53,23 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return view('apexcharts');
     });
 
+    // Route Halaman Mailbox
+    Route::get('/mailbox', function () {
+        return view('mailbox');
+    });
+
+    Route::get('/read', function () {
+        return view('read');
+    });
+
+    Route::get('/compose', function () {
+        return view('compose');
+    });
+
     Route::post('/projects', function (Request $request) {
         return redirect()->back()->with('success', 'Data project berhasil disimpan!');
     })->name('projects.store');
 });
-<<<<<<< HEAD
 
 // File Route Autentikasi (Breeze/Fortify)
 require __DIR__.'/auth.php';
-=======
-Route::get('/apexcharts', function () {
-    return view('apexcharts');
-});
-Route::get('/mailbox', function () {
-    return view('mailbox');
-});
-Route::get('/read', function () {
-    return view('read');
-});
-Route::get('/compose', function () {
-    return view('compose');
-});
->>>>>>> origin/table-apeng

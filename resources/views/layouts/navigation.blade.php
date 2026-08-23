@@ -84,6 +84,37 @@
           </a>
         </li>
 
+        <!-- Menu Mailbox Tambahan -->
+        <li class="nav-item {{ Request::is('mailbox*') || Request::is('read*') || Request::is('compose*') ? 'menu-open' : '' }}">
+        <a href="#" class="nav-link {{ Request::is('mailbox*') || Request::is('read*') || Request::is('compose*') ? 'active' : '' }}">
+            <i class="nav-icon bi bi-envelope"></i>
+            <p>
+            Mailbox
+            <i class="nav-arrow bi bi-chevron-right"></i>
+            </p>
+        </a>
+        <ul class="nav nav-treeview">
+            <li class="nav-item">
+            <a href="{{ url('/mailbox') }}" class="nav-link {{ Request::is('mailbox') ? 'active' : '' }}">
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Inbox</p>
+            </a>
+            </li>
+            <li class="nav-item">
+            <a href="{{ url('/read') }}" class="nav-link {{ Request::is('read') ? 'active' : '' }}">
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Read Message</p>
+            </a>
+            </li>
+            <li class="nav-item">
+            <a href="{{ url('/compose') }}" class="nav-link {{ Request::is('compose') ? 'active' : '' }}">
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Compose</p>
+            </a>
+            </li>
+        </ul>
+        </li>
+
       </ul>
     </nav>
   </div>

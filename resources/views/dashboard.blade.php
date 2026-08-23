@@ -143,6 +143,14 @@
             </a>
           </li>
 
+          <!-- Menu Mailbox (BARU DITAMBAHKAN) -->
+          <li class="nav-item">
+            <a href="{{ url('/mailbox') }}" class="nav-link">
+              <i class="nav-icon bi bi-envelope"></i>
+              <p>Mailbox</p>
+            </a>
+          </li>
+
           <!-- Autentikasi / Profile & Logout -->
           <li class="nav-header">AUTENTIKASI</li>
           
