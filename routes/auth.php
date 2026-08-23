@@ -57,3 +57,11 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
         ->name('logout');
 });
+
+Route::get('/404', function () {
+    return view('error1');
+});
+
+Route::get('/500', function () {
+    return view('error2');
+});

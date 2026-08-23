@@ -5,7 +5,6 @@ use Illuminate\Http\Request;
 
 // Halaman utama (/) langsung menampilkan dashboard tanpa login
 Route::get('/', function () {
-<<<<<<< HEAD
     return view('welcome');
 });
 
@@ -50,21 +49,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-=======
-    $totalData = 0; 
-    $totalSelesai = 0;
-    $totalProses = 0;
-    $totalPending = 0;
-    $projects = collect();
-
-    return view('dashboard', compact(
-        'totalData', 
-        'totalSelesai', 
-        'totalProses', 
-        'totalPending', 
-        'projects'
-    ));
->>>>>>> origin/table-apeng
 });
 
 // Route penampung form
