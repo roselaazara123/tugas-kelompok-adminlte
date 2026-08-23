@@ -1,6 +1,19 @@
 @extends('layouts.app')
 
+@section('title', 'Dashboard Utama')
+
 @section('content')
+
+<!-- Notifikasi Berhasil -->
+@if(session('success'))
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <i class="fas fa-check-circle mr-1"></i> {{ session('success') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+@endif
+
 <div class="app-content-header">
   <div class="container-fluid">
     <div class="row">
@@ -17,41 +30,106 @@
 
 <div class="app-content">
   <div class="container-fluid">
-    <!-- Small Boxes -->
-    <div class="row">
+    
+    <!-- 1. KARTU STATISTIK DINAMIS (KODE TEMAN) -->
+    <div class="row mb-4">
       <div class="col-lg-3 col-6">
-        <div class="small-box text-bg-primary">
-          <div class="inner"><h3>150</h3><p>New Orders</p></div>
-          <i class="small-box-icon bi bi-cart-fill"></i>
-          <a href="#" class="small-box-footer link-light link-underline-opacity-0">More info <i class="bi bi-link-45deg"></i></a>
+        <div class="small-box bg-info text-white p-3 rounded">
+          <div class="inner">
+            <h3>{{ $totalData ?? 0 }}</h3>
+            <p>Total Item Data</p>
+          </div>
+          <div class="icon"><i class="fas fa-box"></i></div>
         </div>
       </div>
+
       <div class="col-lg-3 col-6">
-        <div class="small-box text-bg-success">
-          <div class="inner"><h3>53<sup class="fs-5">%</sup></h3><p>Bounce Rate</p></div>
-          <i class="small-box-icon bi bi-bar-chart-fill"></i>
-          <a href="#" class="small-box-footer link-light link-underline-opacity-0">More info <i class="bi bi-link-45deg"></i></a>
+        <div class="small-box bg-success text-white p-3 rounded">
+          <div class="inner">
+            <h3>{{ $totalSelesai ?? 0 }}</h3>
+            <p>Project Selesai</p>
+          </div>
+          <div class="icon"><i class="fas fa-check-circle"></i></div>
         </div>
       </div>
+
       <div class="col-lg-3 col-6">
-        <div class="small-box text-bg-warning">
-          <div class="inner"><h3>44</h3><p>User Registrations</p></div>
-          <i class="small-box-icon bi bi-person-plus-fill"></i>
-          <a href="#" class="small-box-footer link-dark link-underline-opacity-0">More info <i class="bi bi-link-45deg"></i></a>
+        <div class="small-box bg-warning text-dark p-3 rounded">
+          <div class="inner">
+            <h3>{{ $totalProses ?? 0 }}</h3>
+            <p>Dalam Proses</p>
+          </div>
+          <div class="icon"><i class="fas fa-spinner"></i></div>
         </div>
       </div>
+
       <div class="col-lg-3 col-6">
-        <div class="small-box text-bg-danger">
-          <div class="inner"><h3>65</h3><p>Unique Visitors</p></div>
-          <i class="small-box-icon bi bi-pie-chart-fill"></i>
-          <a href="#" class="small-box-footer link-light link-underline-opacity-0">More info <i class="bi bi-link-45deg"></i></a>
+        <div class="small-box bg-danger text-white p-3 rounded">
+          <div class="inner">
+            <h3>{{ $totalPending ?? 0 }}</h3>
+            <p>Project Pending</p>
+          </div>
+          <div class="icon"><i class="fas fa-clock"></i></div>
         </div>
       </div>
     </div>
 
-    <!-- Main Row -->
+    <!-- 2. TABEL DATA DINAMIS (KODE TEMAN) -->
+    <div class="row mb-4">
+      <div class="col-lg-12">
+        <div class="card card-primary card-outline">
+          <div class="card-header border-0 d-flex justify-content-between align-items-center">
+            <h3 class="card-title font-weight-bold mb-0">
+              <i class="fas fa-list mr-1"></i> Data Ringkasan Project
+            </h3>
+            <div class="card-tools">
+              <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalTambah">
+                <i class="fas fa-plus mr-1"></i> Tambah Data Baru
+              </button>
+            </div>
+          </div>
+          <div class="card-body table-responsive p-0">
+            <table class="table table-striped table-valign-middle">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Nama Project / Tugas</th>
+                  <th>Kategori</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                @forelse($projects ?? [] as $index => $item)
+                  <tr>
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ $item->nama_project }}</td>
+                    <td>{{ $item->kategori }}</td>
+                    <td>
+                      @if($item->status == 'Selesai')
+                        <span class="badge bg-success">Selesai</span>
+                      @elseif($item->status == 'Dalam Proses')
+                        <span class="badge bg-primary">Dalam Proses</span>
+                      @else
+                        <span class="badge bg-secondary">Pending</span>
+                      @endif
+                    </td>
+                  </tr>
+                @empty
+                  <tr>
+                    <td colspan="4" class="text-center text-muted p-4">
+                      <em>Belum ada data project. Klik tombol <strong>Tambah Data Baru</strong> di atas untuk mengisi data.</em>
+                    </td>
+                  </tr>
+                @endforelse
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. GRAFIK DAN WIDGET (KODE KAMU) -->
     <div class="row">
-      <!-- Area Grafik -->
       <div class="col-lg-7">
         <div class="card mb-4">
           <div class="card-header border-0">
@@ -61,82 +139,20 @@
             <div id="revenue-chart" style="min-height: 300px; width: 100%;"></div>
           </div>
         </div>
-
-        <div class="card direct-chat direct-chat-primary mb-4">
-          <div class="card-header">
-            <h3 class="card-title">Direct Chat</h3>
-            <div class="card-tools">
-              <span title="3 New Messages" class="badge text-bg-primary">3</span>
-              <button type="button" class="btn btn-tool" data-lte-toggle="card-collapse"><i class="bi bi-minus-lg"></i></button>
-              <button type="button" class="btn btn-tool" data-lte-toggle="card-remove"><i class="bi bi-x-lg"></i></button>
-            </div>
-          </div>
-          <div class="card-body">
-            <div class="direct-chat-messages p-3" style="height: 250px; overflow-y: auto;">
-              <div class="direct-chat-msg">
-                <div class="direct-chat-infos clearfix">
-                  <span class="direct-chat-name float-start">Alexander Pierce</span>
-                  <span class="direct-chat-timestamp float-end">23 Jan 5:37 pm</span>
-                </div>
-                <img class="direct-chat-img rounded-circle" src="https://adminlte.io/themes/v3/dist/img/user1-128x128.jpg" alt="user image" style="width:35px">
-                <div class="direct-chat-text bg-dark p-2 rounded mt-1">Working with AdminLTE on a great new app! Wanna join?</div>
-              </div>
-              <div class="direct-chat-msg right text-end mt-3">
-                <div class="direct-chat-infos clearfix">
-                  <span class="direct-chat-name float-end">Sarah Bullock</span>
-                  <span class="direct-chat-timestamp float-start">23 Jan 6:10 pm</span>
-                </div>
-                <img class="direct-chat-img rounded-circle float-end" src="https://adminlte.io/themes/v3/dist/img/user3-128x128.jpg" alt="user image" style="width:35px">
-                <div class="direct-chat-text bg-primary text-white p-2 rounded mt-1 d-inline-block">I would love to.</div>
-              </div>
-            </div>
-          </div>
-          <div class="card-footer">
-            <form action="#" method="post">
-              <div class="input-group">
-                <input type="text" name="message" placeholder="Type Message ..." class="form-control">
-                <span class="input-group-append">
-                  <button type="button" class="btn btn-primary">Send</button>
-                </span>
-              </div>
-            </form>
-          </div>
-        </div>
       </div>
 
-      <!-- Area Peta -->
       <div class="col-lg-5">
         <div class="card text-bg-primary mb-4">
           <div class="card-header border-0">
-            <h3 class="card-title">Sales Value</h3>
-            <div class="card-tools">
-              <button type="button" class="btn btn-primary btn-sm" data-lte-toggle="card-collapse">
-                <i class="bi bi-minus-lg"></i>
-              </button>
-            </div>
+            <h3 class="card-title">Sales Value Map</h3>
           </div>
           <div class="card-body">
             <div id="world-map" style="height: 220px; width: 100%;"></div>
           </div>
-          <div class="card-footer bg-transparent border-0 text-white">
-            <div class="row text-center">
-              <div class="col-4">
-                <div class="fw-bold fs-5">8,390</div>
-                <div class="text-white-50">Visitors</div>
-              </div>
-              <div class="col-4">
-                <div class="fw-bold fs-5">30%</div>
-                <div class="text-white-50">Online</div>
-              </div>
-              <div class="col-4">
-                <div class="fw-bold fs-5">13,000</div>
-                <div class="text-white-50">Sales</div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
+
   </div>
 </div>
 @endsection
@@ -144,7 +160,6 @@
 @push('scripts')
 <script>
   window.addEventListener('load', function () {
-    // 1. ApexCharts
     if (typeof ApexCharts !== 'undefined') {
       const sales_chart_options = {
         series: [
@@ -164,7 +179,6 @@
       sales_chart.render();
     }
 
-    // 2. jsVectorMap
     if (typeof jsVectorMap !== 'undefined') {
       const map = new jsVectorMap({
         selector: '#world-map',
