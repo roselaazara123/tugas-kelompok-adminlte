@@ -57,6 +57,21 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return redirect()->back()->with('success', 'Data project berhasil disimpan!');
     })->name('projects.store');
 });
+<<<<<<< HEAD
 
 // File Route Autentikasi (Breeze/Fortify)
 require __DIR__.'/auth.php';
+=======
+Route::get('/apexcharts', function () {
+    return view('apexcharts');
+});
+Route::get('/mailbox', function () {
+    return view('mailbox');
+});
+Route::get('/read', function () {
+    return view('read');
+});
+Route::get('/compose', function () {
+    return view('compose');
+});
+>>>>>>> origin/table-apeng
