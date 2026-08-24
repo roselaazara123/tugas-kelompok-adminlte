@@ -37,3 +37,7 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+Route::get('/smallbox', function () {
+    return view('smallbox');
+});

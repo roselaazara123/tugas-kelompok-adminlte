@@ -42,6 +42,26 @@
               <p>Dashboard</p>
             </a>
           </li>
+
+          <!-- Menu Widgets & Small Box Ditambahkan Di Sini -->
+          <li class="nav-item menu-open">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Widgets
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ url('/smallbox') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Small Box</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
         </ul>
       </nav>
     </div>
