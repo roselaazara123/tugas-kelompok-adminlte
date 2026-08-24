@@ -4,7 +4,7 @@
 
     <div class="mb-6 text-center">
         <h2 class="text-2xl font-bold tracking-tight text-gray-900">Selamat Datang Kembali</h2>
-        <p class="mt-1 text-sm text-gray-500">Silakan masuk ke akun Anda</p>
+        <p class="mt-1 text-sm text-blue-500">Silakan masuk ke akun Anda</p>
     </div>
 
     <form method="POST" action="{{ route('login') }}" class="space-y-4">
