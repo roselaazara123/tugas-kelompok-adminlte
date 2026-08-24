@@ -107,6 +107,21 @@
           </a>
         </li>
 
+      <li class="nav-item">
+          <a href="{{ route('element') }}" class="nav-link {{ request()->routeIs('element') ? 'active' : '' }}">
+            <i class="nav-icon bi bi-speedometer2"></i>
+            <p>Elements</p>
+          </a>
+        </li>
+
+        <!-- Tambahan Dashboard v3 -->
+        <li class="nav-item">
+          <a href="{{ route('layout') }}" class="nav-link {{ request()->routeIs('layout') ? 'active' : '' }}">
+            <i class="nav-icon bi bi-speedometer2"></i>
+            <p>Layout</p>
+          </a>
+        </li>
+
       </ul>
     </nav>
   </div>

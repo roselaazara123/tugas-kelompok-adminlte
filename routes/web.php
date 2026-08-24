@@ -76,3 +76,14 @@ Route::get('/error1', function () {
 Route::get('/error2', function () {
     return view('error2');
 })->name('error2');
+
+Route::get('/element', function () {
+    return view('element');
+});
+Route::get('/layout', function () {
+    return view('layout');
+});
+
+Route::get('/infobox', function () {
+    return view('infobox');
+});
