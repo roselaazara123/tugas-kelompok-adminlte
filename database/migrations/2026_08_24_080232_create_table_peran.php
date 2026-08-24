@@ -11,8 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('table_peran', function (Blueprint $table) {
-            $table->id();
+        Schema::create('peran', function (Blueprint $table) {
+            $table->id(); // id INT (Primary Key, Auto Increment)
+            $table->foreignId('film_id')->constrained('film')->onDelete('cascade'); // film_id INT (Foreign Key ke tabel film)
+            $table->foreignId('cast_id')->constrained('cast')->onDelete('cascade'); // cast_id INT (Foreign Key ke tabel cast)
+            $table->string('nama', 50); // nama VARCHAR(45)
             $table->timestamps();
         });
     }
@@ -22,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('table_peran');
+        Schema::dropIfExists('peran');
     }
 };
