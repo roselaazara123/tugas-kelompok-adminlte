@@ -2,14 +2,21 @@
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
-    <form method="POST" action="{{ route('login') }}">
+    <div class="mb-6 text-center">
+        <h2 class="text-2xl font-bold tracking-tight text-gray-900">Selamat Datang Kembali</h2>
+        <p class="mt-1 text-sm text-blue-500">Silakan masuk ke akun Anda</p>
+    </div>
+
+    <form method="POST" action="{{ route('login') }}" class="space-y-4">
         @csrf
 
         <!-- Email Address -->
         <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            <x-input-label for="email" :value="__('Alamat Email')" class="text-xs font-semibold uppercase tracking-wider text-gray-700" />
+            <div class="relative mt-1">
+                <x-text-input id="email" class="block w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 text-sm py-2.5 px-3" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" placeholder="nama@email.com" />
+            </div>
+            <x-input-error :messages="$errors->get('email')" class="mt-1 text-xs" />
         </div>
 
         <!-- Password -->
@@ -33,12 +40,10 @@
         </div>
 
         <!-- Remember Me -->
-        <div class="flex items-center justify-between pt-1">
-            <label for="remember_me" class="inline-flex items-center cursor-pointer">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500 w-4 h-4" name="remember">
-
-                <span class="ml-2 text-sm text-gray-600">{{ __('Remember Me') }}</span>
-                <span class="ml-2 text-sm text-green-600">{{ __('Remember Me') }}</span>
+        <div class="block mt-4">
+            <label for="remember_me" class="inline-flex items-center">
+                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
+                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
             </label>
         </div>
 
