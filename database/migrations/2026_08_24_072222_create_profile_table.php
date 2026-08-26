@@ -13,7 +13,7 @@ return new class extends Migration
             $table->integer('umur');
             $table->text('bio');
             $table->text('alamat');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('user')->onDelete('cascade');
             $table->timestamps();
         });
     }

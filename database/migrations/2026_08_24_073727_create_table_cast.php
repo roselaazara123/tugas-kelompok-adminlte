@@ -6,22 +6,19 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
     public function up(): void
     {
-        Schema::create('table_cast', function (Blueprint $table) {
+        Schema::create('cast', function (Blueprint $table) {
             $table->id();
+            $table->string('nama', 45);
+            $table->integer('umur');
+            $table->text('bio');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::dropIfExists('table_cast');
+        Schema::dropIfExists('cast');
     }
 };

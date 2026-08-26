@@ -1,38 +1,23 @@
 <?php
 
-namespace App\Models;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Film extends Model
-{
-    // Nama tabel di database
-    protected $table = 'film';
-
-    // Kolom yang boleh diisi (Mass Assignment)
-    protected $fillable = [
-        'judul',
-        'ringkasan',
-        'tahun',
-        'poster',
-        'genre_id'
-    ];
-
-    // Relasi: Film dimiliki oleh 1 Genre
-    public function genre()
-    {
-        return $this->belongsTo(Genre::class, 'genre_id');
+return new class extends Migration {
+    public function up(): void {
+        Schema::create('film', function (Blueprint $table) {
+            $table->id();
+            $table->string('judul', 45);
+            $table->text('ringkasan')->nullable();
+            $table->integer('tahun')->nullable();
+            $table->string('poster', 45)->nullable();
+            $table->foreignId('genre_id')->constrained('genre')->onDelete('cascade');
+            $table->timestamps();
+        });
     }
 
-    // Relasi: 1 Film punya banyak Peran
-    public function peran()
-    {
-        return $this->hasMany(Peran::class, 'film_id');
+    public function down(): void {
+        Schema::dropIfExists('film');
     }
-
-    // Relasi: 1 Film punya banyak Kritik
-    public function kritik()
-    {
-        return $this->hasMany(Kritik::class, 'film_id');
-    }
-}
+};
