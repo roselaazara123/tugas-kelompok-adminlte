@@ -15,3 +15,10 @@ Aplikasi manajemen data film berbasis Laravel.
    DB_DATABASE=kelompoklaravel
    DB_USERNAME=root
    DB_PASSWORD=
+
+
+---
+
+## Status Anggota
+
+- **Rosela**: Sakit (saat mengerjakan bagian tugas ke-2)
