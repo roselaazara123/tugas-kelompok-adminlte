@@ -1,4 +1,4 @@
-@extends('app')
+
 
 @section('title', 'Data Tables')
 
@@ -62,7 +62,9 @@
           </tr>
           <tr>
             <td class="text-center">4</td>
-            <td>Ilyas gtg</td>`
+
+            <td>Ilyas gtg</td>
+            <td>Ilyas gtg</td>
             <td>ilyas@example.com</td>
             <td>Editor</td>
             <td class="text-center"><span class="badge badge-secondary px-2 py-1">Suspended</span></td>

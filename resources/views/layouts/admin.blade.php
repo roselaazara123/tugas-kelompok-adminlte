@@ -3,16 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>@yield('title', 'Dashboard Utama') - AdminLTE 4</title>
+  <title>@yield('title', 'Dashboard') - AdminLTE 4</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css">
-  <!-- jsVectorMap CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/css/jsvectormap.min.css">
   <!-- AdminLTE 4 CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0-beta2/dist/css/adminlte.min.css">
 </head>
@@ -22,6 +18,7 @@
   <!-- Header / Navbar -->
   <nav class="app-header navbar navbar-expand bg-body">
     <div class="container-fluid">
+      <!-- Left Navbar Links -->
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link" data-lte-toggle="sidebar" href="#" role="button">
@@ -33,29 +30,32 @@
         </li>
       </ul>
 
-      <!-- User Navbar Right -->
+      <!-- Right Navbar Links (User & Logout) -->
       <ul class="navbar-nav ms-auto align-items-center">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
+        <li class="nav-item dropdown user-menu">
+          <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
             <i class="bi bi-person-circle"></i>
             <span class="d-none d-md-inline ms-1">{{ Auth::user()->name ?? 'User' }}</span>
           </a>
           <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
-            <li class="dropdown-header text-center fw-bold">
-              {{ Auth::user()->email ?? 'user@example.com' }}
+            <!-- User Header -->
+            <li class="user-header bg-primary text-white">
+              <i class="bi bi-person-circle display-4"></i>
+              <p>
+                {{ Auth::user()->name ?? 'User' }}
+                <small>{{ Auth::user()->email ?? 'user@example.com' }}</small>
+              </p>
             </li>
-            <li><hr class="dropdown-divider"></li>
-            <li>
-              <a href="{{ route('profile.edit') }}" class="dropdown-item">
-                <i class="bi bi-gear me-2"></i> Profile
+            <!-- Menu Items -->
+            <li class="user-body">
+              <a href="{{ route('profile.edit') }}" class="btn btn-default btn-flat float-start">
+                <i class="bi bi-gear-fill me-1"></i> Profile
               </a>
-            </li>
-            <li><hr class="dropdown-divider"></li>
-            <li>
-              <form method="POST" action="{{ route('logout') }}">
+              <!-- Form Logout Navbar -->
+              <form method="POST" action="{{ route('logout') }}" class="float-end">
                 @csrf
-                <button type="submit" class="dropdown-item text-danger">
-                  <i class="bi bi-box-arrow-right me-2"></i> Logout
+                <button type="submit" class="btn btn-danger btn-flat">
+                  <i class="bi bi-box-arrow-right me-1"></i> Logout
                 </button>
               </form>
             </li>
@@ -65,19 +65,21 @@
     </div>
   </nav>
 
-  <!-- Sidebar Global -->
+  <!-- Sidebar Navbar -->
   <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
+    <!-- Brand Logo -->
     <div class="sidebar-brand">
       <a href="{{ url('/dashboard') }}" class="brand-link">
         <span class="brand-text fw-light"><strong>AdminLTE 4</strong></span>
       </a>
     </div>
 
+    <!-- Sidebar Menu -->
     <div class="sidebar-wrapper">
       <nav class="mt-2">
         <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu" data-accordion="false">
           
-          <!-- Menu Dashboard -->
+          <!-- Dashboard Menu Dropdown -->
           <li class="nav-item {{ Request::is('dashboard*') ? 'menu-open' : '' }}">
             <a href="#" class="nav-link {{ Request::is('dashboard*') ? 'active' : '' }}">
               <i class="nav-icon bi bi-speedometer"></i>
@@ -108,7 +110,7 @@
             </ul>
           </li>
 
-          <!-- Menu Tables -->
+          <!-- Tables Menu -->
           <li class="nav-item {{ Request::is('table1*') || Request::is('datatable*') ? 'menu-open' : '' }}">
             <a href="#" class="nav-link {{ Request::is('table1*') || Request::is('datatable*') ? 'active' : '' }}">
               <i class="nav-icon bi bi-table"></i>
@@ -133,7 +135,7 @@
             </ul>
           </li>
 
-          <!-- Menu ApexCharts -->
+          <!-- ApexCharts Menu -->
           <li class="nav-item">
             <a href="{{ url('/apexcharts') }}" class="nav-link {{ Request::is('apexcharts') ? 'active' : '' }}">
               <i class="nav-icon bi bi-graph-up"></i>
@@ -141,53 +143,23 @@
             </a>
           </li>
 
-          <!-- Menu Mailbox (Tambahan Baru) -->
-          <li class="nav-item {{ Request::is('mailbox*') || Request::is('read*') || Request::is('compose*') ? 'menu-open' : '' }}">
-            <a href="#" class="nav-link {{ Request::is('mailbox*') || Request::is('read*') || Request::is('compose*') ? 'active' : '' }}">
-              <i class="nav-icon bi bi-envelope"></i>
-              <p>
-                Mailbox
-                <i class="nav-arrow bi bi-chevron-right"></i>
-              </p>
-            </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ url('/mailbox') }}" class="nav-link {{ Request::is('mailbox') ? 'active' : '' }}">
-                  <i class="nav-icon bi bi-circle"></i>
-                  <p>Inbox</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ url('/read') }}" class="nav-link {{ Request::is('read') ? 'active' : '' }}">
-                  <i class="nav-icon bi bi-circle"></i>
-                  <p>Read Message</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ url('/compose') }}" class="nav-link {{ Request::is('compose') ? 'active' : '' }}">
-                  <i class="nav-icon bi bi-circle"></i>
-                  <p>Compose</p>
-                </a>
-              </li>
-            </ul>
-          </li>
+          <li class="nav-header">AKUN</li>
 
-          <!-- Autentikasi / Profile & Logout (Muncul di Semua Halaman) -->
-          <li class="nav-header">AUTENTIKASI</li>
-          
+          <!-- Profile Menu -->
           <li class="nav-item">
-            <a href="{{ route('profile.edit') }}" class="nav-link {{ Request::is('profile*') ? 'active' : '' }}">
+            <a href="{{ route('profile.edit') }}" class="nav-link {{ Request::is('profile') ? 'active' : '' }}">
               <i class="nav-icon bi bi-person"></i>
               <p>Profile</p>
             </a>
           </li>
 
+          <!-- Logout Button (Sidebar) -->
           <li class="nav-item">
             <form method="POST" action="{{ route('logout') }}" id="logout-sidebar-form">
               @csrf
               <a href="#" onclick="event.preventDefault(); document.getElementById('logout-sidebar-form').submit();" class="nav-link text-danger">
                 <i class="nav-icon bi bi-box-arrow-right"></i>
-                <p><strong>Logout</strong></p>
+                <p>Logout</p>
               </a>
             </form>
           </li>
@@ -197,23 +169,42 @@
     </div>
   </aside>
 
-  <!-- Area Isi Konten Halaman -->
+  <!-- Main Content Wrapper -->
   <main class="app-main">
-    @yield('content')
+    <div class="app-content-header">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-sm-6">
+            <h3 class="mb-0">@yield('title', 'Dashboard')</h3>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-end">
+              <li class="breadcrumb-item"><a href="{{ url('/dashboard') }}">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">@yield('title', 'Dashboard')</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="app-content">
+      <div class="container-fluid">
+        @yield('content')
+      </div>
+    </div>
   </main>
 
+  <!-- Footer -->
   <footer class="app-footer text-sm">
+    <div class="float-end d-none d-sm-inline">Anything you want</div>
     <strong>Copyright &copy; {{ date('Y') }} Project Kelompok.</strong> All rights reserved.
   </footer>
 
 </div>
 
-<!-- Scripts Global -->
+<!-- Scripts (AdminLTE 4 + Bootstrap 5) -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/admin-lte@4.0.0-beta2/dist/js/adminlte.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-<script src="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/js/jsvectormap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jsvectormap@1.5.3/dist/maps/world.js"></script>
 
 @stack('scripts')
 </body>
