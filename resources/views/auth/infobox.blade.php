@@ -322,5 +322,3 @@
         @endforeach
 
     </div>
-
-@endsection
