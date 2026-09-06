@@ -11,7 +11,7 @@ Route::get('/', function () {
 
 // Route Khusus Setelah Login
 Route::middleware(['auth', 'verified'])->group(function () {
-    
+
     // Route Dashboard
     Route::get('/dashboard', function () {
         $totalData = 0; 
@@ -34,6 +34,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard3', function () {
         return view('dashboard3');
     })->name('dashboard3');
+
+    // Route Info Box (Dipindahkan ke dalam Auth Middleware)
+    Route::get('/infobox', function () {
+        return view('infobox');
+    })->name('infobox');
 
     // Route Profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

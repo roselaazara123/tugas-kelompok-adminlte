@@ -70,7 +70,8 @@
     <!-- Brand Logo -->
     <div class="sidebar-brand">
       <a href="{{ url('/dashboard') }}" class="brand-link">
-        <span class="brand-text fw-light"><strong>AdminLTE 4</strong></span>
+        <span class="brand-text fw-light"><strong> BERHASIL 
+        </strong></span>
       </a>
     </div>
 
@@ -105,6 +106,25 @@
                 <a href="{{ url('/dashboard3') }}" class="nav-link">
                   <i class="nav-icon bi bi-circle"></i>
                   <p>Dashboard v3</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <!-- Menu Widgets (BARU DITAMBAHKAN) -->
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon bi bi-boxes"></i>
+              <p>
+                Widgets
+                <i class="nav-arrow bi bi-chevron-right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('infobox') }}" class="nav-link">
+                  <i class="nav-icon bi bi-circle"></i>
+                  <p>Info Box</p>
                 </a>
               </li>
             </ul>

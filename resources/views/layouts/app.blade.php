@@ -108,6 +108,25 @@
             </ul>
           </li>
 
+          <!-- Menu Widgets / Info Box -->
+          <li class="nav-item {{ Request::is('infobox*') ? 'menu-open' : '' }}">
+            <a href="#" class="nav-link {{ Request::is('infobox*') ? 'active' : '' }}">
+              <i class="nav-icon bi bi-box-seam"></i>
+              <p>
+                Widgets
+                <i class="nav-arrow bi bi-chevron-right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('infobox') }}" class="nav-link {{ Request::is('infobox') ? 'active' : '' }}">
+                  <i class="nav-icon bi bi-circle"></i>
+                  <p>Info Box</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
           <!-- Menu Tables -->
           <li class="nav-item {{ Request::is('table1*') || Request::is('datatable*') ? 'menu-open' : '' }}">
             <a href="#" class="nav-link {{ Request::is('table1*') || Request::is('datatable*') ? 'active' : '' }}">
@@ -141,7 +160,7 @@
             </a>
           </li>
 
-          <!-- Menu Mailbox (Tambahan Baru) -->
+          <!-- Menu Mailbox -->
           <li class="nav-item {{ Request::is('mailbox*') || Request::is('read*') || Request::is('compose*') ? 'menu-open' : '' }}">
             <a href="#" class="nav-link {{ Request::is('mailbox*') || Request::is('read*') || Request::is('compose*') ? 'active' : '' }}">
               <i class="nav-icon bi bi-envelope"></i>
@@ -172,7 +191,7 @@
             </ul>
           </li>
 
-          <!-- Autentikasi / Profile & Logout (Muncul di Semua Halaman) -->
+          <!-- Autentikasi / Profile & Logout -->
           <li class="nav-header">AUTENTIKASI</li>
           
           <li class="nav-item">
