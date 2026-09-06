@@ -38,11 +38,11 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
             <i class="bi bi-person-circle"></i>
-            <span class="d-none d-md-inline ms-1">{{ Auth::user()->name ?? 'User' }}</span>
+            <span class="d-none d-md-inline ms-1">{{ Auth::user()?->name ?? 'User' }}</span>
           </a>
           <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
             <li class="dropdown-header text-center fw-bold">
-              {{ Auth::user()->email ?? 'user@example.com' }}
+              {{ Auth::user()?->email ?? 'user@example.com' }}
             </li>
             <li><hr class="dropdown-divider"></li>
             <li>
@@ -103,6 +103,25 @@
                 <a href="{{ url('/dashboard3') }}" class="nav-link {{ Request::is('dashboard3') ? 'active' : '' }}">
                   <i class="nav-icon bi bi-circle"></i>
                   <p>Dashboard v3</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <!-- Menu Master Film / Genre (BARU DITAMBAHKAN) -->
+          <li class="nav-item {{ Request::is('genre*') ? 'menu-open' : '' }}">
+            <a href="#" class="nav-link {{ Request::is('genre*') ? 'active' : '' }}">
+              <i class="nav-icon bi bi-tags"></i>
+              <p>
+                Master Film
+                <i class="nav-arrow bi bi-chevron-right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('genre.index') }}" class="nav-link {{ Request::is('genre*') ? 'active' : '' }}">
+                  <i class="nav-icon bi bi-circle"></i>
+                  <p>Data Genre</p>
                 </a>
               </li>
             </ul>

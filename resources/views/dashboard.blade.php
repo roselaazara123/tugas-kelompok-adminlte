@@ -70,8 +70,7 @@
     <!-- Brand Logo -->
     <div class="sidebar-brand">
       <a href="{{ url('/dashboard') }}" class="brand-link">
-        <span class="brand-text fw-light"><strong> BERHASIL 
-        </strong></span>
+        <span class="brand-text fw-light"><strong> BERHASIL </strong></span>
       </a>
     </div>
 
@@ -111,7 +110,7 @@
             </ul>
           </li>
 
-          <!-- Menu Widgets (BARU DITAMBAHKAN) -->
+          <!-- Menu Widgets -->
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon bi bi-boxes"></i>
@@ -128,6 +127,14 @@
                 </a>
               </li>
             </ul>
+          </li>
+
+          <!-- MENU GENRE (BARU DITAMBAHKAN) -->
+          <li class="nav-item">
+            <a href="{{ route('genre.index') }}" class="nav-link {{ request()->routeIs('genre*') ? 'active' : '' }}">
+              <i class="nav-icon bi bi-tags"></i>
+              <p>Genre</p>
+            </a>
           </li>
 
           <!-- Menu Tables -->
@@ -163,7 +170,7 @@
             </a>
           </li>
 
-          <!-- Menu Mailbox (BARU DITAMBAHKAN) -->
+          <!-- Menu Mailbox -->
           <li class="nav-item">
             <a href="{{ url('/mailbox') }}" class="nav-link">
               <i class="nav-icon bi bi-envelope"></i>

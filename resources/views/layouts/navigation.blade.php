@@ -19,23 +19,20 @@
           </a>
         </li>
 
-        <!-- WIDGETS DROPDOWN -->
-        <li class="nav-item {{ request()->routeIs('infobox') ? 'menu-open' : '' }}">
-          <a href="#" class="nav-link {{ request()->routeIs('infobox') ? 'active' : '' }}">
+        <!-- INFO BOX -->
+        <li class="nav-item">
+          <a href="{{ route('infobox') }}" class="nav-link {{ request()->routeIs('infobox') ? 'active' : '' }}">
             <i class="nav-icon bi bi-box-seam"></i>
-            <p>
-              Widgets
-              <i class="nav-arrow bi bi-chevron-right"></i>
-            </p>
+            <p>Info Box</p>
           </a>
-          <ul class="nav nav-treeview">
-            <li class="nav-item">
-              <a href="{{ route('infobox') }}" class="nav-link {{ request()->routeIs('infobox') ? 'active' : '' }}">
-                <i class="nav-icon bi bi-circle"></i>
-                <p>Info Box</p>
-              </a>
-            </li>
-          </ul>
+        </li>
+
+        <!-- GENRE -->
+        <li class="nav-item">
+          <a href="{{ route('genre.index') }}" class="nav-link {{ request()->routeIs('genre*') ? 'active' : '' }}">
+            <i class="nav-icon bi bi-tags"></i>
+            <p>Genre</p>
+          </a>
         </li>
 
         <!-- TABLES -->
