@@ -7,24 +7,26 @@ use Illuminate\Http\Request;
 
 class GenreController extends Controller
 {
-    // READ: Menampilkan semua data genre di tabel
     public function index()
     {
         $genres = Genre::all();
+
         return view('genre.index', compact('genres'));
     }
 
-    // CREATE: Menampilkan halaman form input genre
     public function create()
     {
         return view('genre.create');
     }
 
-    // STORE: Menyimpan data yang diketik dari form ke database
     public function store(Request $request)
     {
         $request->validate([
-            'nama' => 'required|min:3',
+            'nama' => 'required|string|max:255|unique:genre,nama',
+        ], [
+            'nama.required' => 'Nama genre wajib diisi!',
+            'nama.unique'   => 'Nama genre ini sudah ada di database.',
+            'nama.max'      => 'Nama genre maksimal 255 karakter.',
         ]);
 
         Genre::create([

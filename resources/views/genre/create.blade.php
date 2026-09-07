@@ -26,7 +26,7 @@
                         <div class="card-body">
                             <div class="mb-3">
                                 <label for="nama" class="form-label">Nama Genre</label>
-                                <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama" placeholder="Contoh: Action, Comedy, Horror" value="{{ old('nama') }}" required>
+                                <input type="text" class="form-control @error('nama') is-invalid @enderror" id="nama" name="nama" placeholder="Contoh: Action, Comedy, Horror" value="{{ old('nama') }}">
                                 @error('nama')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
