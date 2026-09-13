@@ -109,8 +109,8 @@
           </li>
 
           <!-- Menu Master Film / Genre (BARU DITAMBAHKAN) -->
-          <li class="nav-item {{ Request::is('genre*') ? 'menu-open' : '' }}">
-            <a href="#" class="nav-link {{ Request::is('genre*') ? 'active' : '' }}">
+          <li class="nav-item {{ Request::is('genre*') || Request::is('film*') ? 'menu-open' : '' }}">
+            <a href="#" class="nav-link {{ Request::is('genre*') || Request::is('film*') ? 'active' : '' }}">
               <i class="nav-icon bi bi-tags"></i>
               <p>
                 Master Film
@@ -122,6 +122,12 @@
                 <a href="{{ route('genre.index') }}" class="nav-link {{ Request::is('genre*') ? 'active' : '' }}">
                   <i class="nav-icon bi bi-circle"></i>
                   <p>Data Genre</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('film.index') }}" class="nav-link {{ Request::is('film*') ? 'active' : '' }}">
+                  <i class="nav-icon bi bi-circle"></i>
+                  <p>Data Film</p>
                 </a>
               </li>
             </ul>

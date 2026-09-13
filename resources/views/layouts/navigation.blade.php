@@ -35,6 +35,14 @@
           </a>
         </li>
 
+        <!-- FILM -->
+        <li class="nav-item">
+          <a href="{{ route('film.index') }}" class="nav-link {{ request()->routeIs('film*') ? 'active' : '' }}">
+            <i class="nav-icon bi bi-film"></i>
+            <p>Film</p>
+          </a>
+        </li>
+
         <!-- TABLES -->
         <li class="nav-item {{ (request()->routeIs('table1') || request()->is('datatable')) ? 'menu-open' : '' }}">
           <a href="#" class="nav-link {{ (request()->routeIs('table1') || request()->is('datatable')) ? 'active' : '' }}">

@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GenreController;
+use App\Http\Controllers\FilmController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -72,6 +73,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/genre', [GenreController::class, 'index'])->name('genre.index');
     Route::get('/genre/create', [GenreController::class, 'create'])->name('genre.create');
     Route::post('/genre', [GenreController::class, 'store'])->name('genre.store');
+
+   Route::get('/film', [FilmController::class, 'index'])->name('film.index');
+    Route::get('/film/create', [FilmController::class, 'create'])->name('film.create');
+    Route::post('/film', [FilmController::class, 'store'])->name('film.store');
 });
 
 require __DIR__.'/auth.php';
