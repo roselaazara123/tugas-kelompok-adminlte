@@ -1,36 +1,9 @@
-
-<!-- Sidebar AdminLTE 4 -->
-<aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
-  <div class="sidebar-brand">
-    <a href="{{ route('dashboard') }}" class="brand-link">
-      <span class="brand-text fw-light">App Kelompok</span>
-    </a>
-  </div>
-
-  <div class="sidebar-wrapper">
-    <nav class="mt-2">
-      <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu" data-accordion="false">
-        
-        <!-- Menu Dashboard -->
-        <li class="nav-item">
-          <a href="{{ route('dashboard') }}" class="nav-link active">
-            <i class="nav-icon bi bi-speedometer"></i>
-            <p>Dashboard</p>
-          </a>
-        </li>
-
-        <!-- Menu Widgets > Small Box -->
-        <li class="nav-item">
-          <a href="#" class="nav-link">
-            <i class="nav-icon bi bi-box-seam"></i>
-            <p>
-            
 <!-- Sidebar Utama -->
 <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
   <!-- Brand Logo -->
   <div class="sidebar-brand">
     <a href="{{ route('dashboard') }}" class="brand-link">
-      <span class="brand-text fw-light">Admin<b>LTE</b> 4</span>
+      <span class="brand-text fw-light">App Kelompok</span>
     </a>
   </div>
 
@@ -39,21 +12,17 @@
     <nav class="mt-2">
       <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu" data-accordion="false">
 
-        <!-- DROPDOWN DASHBOARD -->
-        <li class="nav-item {{ request()->routeIs('dashboard*') ? 'menu-open' : '' }}">
-          <a href="#" class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}">
+        <!-- DASHBOARD -->
+        <li class="nav-item">
+          <a href="{{ route('dashboard') }}" class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}">
             <i class="nav-icon bi bi-speedometer"></i>
             <p>
               Dashboard
-
               <i class="nav-arrow bi bi-chevron-right"></i>
             </p>
           </a>
           <ul class="nav nav-treeview">
             <li class="nav-item">
-              <a href="{{ url('/smallbox') }}" class="nav-link">
-                <i class="nav-icon bi bi-circle"></i>
-                <p>Small Box</p>
               <a href="{{ route('dashboard') }}" class="nav-link {{ request()->routeIs('dashboard') ? 'active' : '' }}">
                 <i class="nav-icon bi bi-circle"></i>
                 <p>Dashboard v1</p>
@@ -74,7 +43,7 @@
           </ul>
         </li>
 
-        <!-- DROPDOWN TABLES -->
+        <!-- TABLES -->
         <li class="nav-item {{ (request()->routeIs('table1') || request()->is('datatable')) ? 'menu-open' : '' }}">
           <a href="#" class="nav-link {{ (request()->routeIs('table1') || request()->is('datatable')) ? 'active' : '' }}">
             <i class="nav-icon bi bi-table"></i>
@@ -91,7 +60,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="/datatable" class="nav-link {{ request()->is('datatable') ? 'active' : '' }}">
+              <a href="{{ url('/datatable') }}" class="nav-link {{ request()->is('datatable') ? 'active' : '' }}">
                 <i class="nav-icon bi bi-circle"></i>
                 <p>Data Tables</p>
               </a>
@@ -99,13 +68,58 @@
           </ul>
         </li>
 
-        <!-- MENU CHARTS / APEXCHARTS -->
-        <li class="nav-item">
-          <a href="/apexcharts" class="nav-link {{ request()->is('apexcharts') ? 'active' : '' }}">
-            <i class="nav-icon bi bi-bar-chart-line-fill"></i>
-            <p>ApexCharts</p>
+        <!-- CHARTS -->
+        <li class="nav-item {{ request()->is('apexcharts') ? 'menu-open' : '' }}">
+          <a href="#" class="nav-link {{ request()->is('apexcharts') ? 'active' : '' }}">
+            <i class="nav-icon bi bi-graph-up"></i>
+            <p>
+              Charts
+              <i class="nav-arrow bi bi-chevron-right"></i>
+            </p>
           </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{ url('/apexcharts') }}" class="nav-link {{ request()->is('apexcharts') ? 'active' : '' }}">
+                <i class="nav-icon bi bi-circle"></i>
+                <p>ApexCharts</p>
+              </a>
+            </li>
+          </ul>
         </li>
+
+        <!-- MAILBOX -->
+        <li class="nav-item {{ (request()->is('mailbox') || request()->is('read') || request()->is('compose')) ? 'menu-open' : '' }}">
+          <a href="#" class="nav-link {{ (request()->is('mailbox') || request()->is('read') || request()->is('compose')) ? 'active' : '' }}">
+            <i class="nav-icon bi bi-envelope"></i>
+            <p>
+              Mailbox
+              <i class="nav-arrow bi bi-chevron-right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{ url('/mailbox') }}" class="nav-link {{ request()->is('mailbox') ? 'active' : '' }}">
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Inbox</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ url('/read') }}" class="nav-link {{ request()->is('read') ? 'active' : '' }}">
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Read Message</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ url('/compose') }}" class="nav-link {{ request()->is('compose') ? 'active' : '' }}">
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Compose</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- HEADER AUTENTIKASI -->
+        <li class="nav-header">AUTENTIKASI</li>
 
         <!-- PROFILE -->
         <li class="nav-item">
@@ -115,35 +129,15 @@
           </a>
         </li>
 
-        <!-- Menu Mailbox Tambahan -->
-        <li class="nav-item {{ Request::is('mailbox*') || Request::is('read*') || Request::is('compose*') ? 'menu-open' : '' }}">
-        <a href="#" class="nav-link {{ Request::is('mailbox*') || Request::is('read*') || Request::is('compose*') ? 'active' : '' }}">
-            <i class="nav-icon bi bi-envelope"></i>
-            <p>
-            Mailbox
-            <i class="nav-arrow bi bi-chevron-right"></i>
-            </p>
-        </a>
-        <ul class="nav nav-treeview">
-            <li class="nav-item">
-            <a href="{{ url('/mailbox') }}" class="nav-link {{ Request::is('mailbox') ? 'active' : '' }}">
-                <i class="nav-icon bi bi-circle"></i>
-                <p>Inbox</p>
+        <!-- LOGOUT -->
+        <li class="nav-item">
+          <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <a href="{{ route('logout') }}" class="nav-link text-danger" onclick="event.preventDefault(); this.closest('form').submit();">
+              <i class="nav-icon bi bi-box-arrow-right"></i>
+              <p>Logout</p>
             </a>
-            </li>
-            <li class="nav-item">
-            <a href="{{ url('/read') }}" class="nav-link {{ Request::is('read') ? 'active' : '' }}">
-                <i class="nav-icon bi bi-circle"></i>
-                <p>Read Message</p>
-            </a>
-            </li>
-            <li class="nav-item">
-            <a href="{{ url('/compose') }}" class="nav-link {{ Request::is('compose') ? 'active' : '' }}">
-                <i class="nav-icon bi bi-circle"></i>
-                <p>Compose</p>
-            </a>
-            </li>
-        </ul>
+          </form>
         </li>
 
       </ul>

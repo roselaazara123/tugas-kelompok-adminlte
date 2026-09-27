@@ -38,11 +38,11 @@
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">
             <i class="bi bi-person-circle"></i>
-            <span class="d-none d-md-inline ms-1">{{ Auth::user()->name ?? 'User' }}</span>
+            <span class="d-none d-md-inline ms-1">{{ Auth::user()?->name ?? 'User' }}</span>
           </a>
           <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
             <li class="dropdown-header text-center fw-bold">
-              {{ Auth::user()->email ?? 'user@example.com' }}
+              {{ Auth::user()?->email ?? 'user@example.com' }}
             </li>
             <li><hr class="dropdown-divider"></li>
             <li>
@@ -108,6 +108,50 @@
             </ul>
           </li>
 
+          <!-- Menu Master Film / Genre (BARU DITAMBAHKAN) -->
+          <li class="nav-item {{ Request::is('genre*') || Request::is('film*') ? 'menu-open' : '' }}">
+            <a href="#" class="nav-link {{ Request::is('genre*') || Request::is('film*') ? 'active' : '' }}">
+              <i class="nav-icon bi bi-tags"></i>
+              <p>
+                Master Film
+                <i class="nav-arrow bi bi-chevron-right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('genre.index') }}" class="nav-link {{ Request::is('genre*') ? 'active' : '' }}">
+                  <i class="nav-icon bi bi-circle"></i>
+                  <p>Data Genre</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('film.index') }}" class="nav-link {{ Request::is('film*') ? 'active' : '' }}">
+                  <i class="nav-icon bi bi-circle"></i>
+                  <p>Data Film</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <!-- Menu Widgets / Info Box -->
+          <li class="nav-item {{ Request::is('infobox*') ? 'menu-open' : '' }}">
+            <a href="#" class="nav-link {{ Request::is('infobox*') ? 'active' : '' }}">
+              <i class="nav-icon bi bi-box-seam"></i>
+              <p>
+                Widgets
+                <i class="nav-arrow bi bi-chevron-right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('infobox') }}" class="nav-link {{ Request::is('infobox') ? 'active' : '' }}">
+                  <i class="nav-icon bi bi-circle"></i>
+                  <p>Info Box</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
           <!-- Menu Tables -->
           <li class="nav-item {{ Request::is('table1*') || Request::is('datatable*') ? 'menu-open' : '' }}">
             <a href="#" class="nav-link {{ Request::is('table1*') || Request::is('datatable*') ? 'active' : '' }}">
@@ -141,7 +185,7 @@
             </a>
           </li>
 
-          <!-- Menu Mailbox (Tambahan Baru) -->
+          <!-- Menu Mailbox -->
           <li class="nav-item {{ Request::is('mailbox*') || Request::is('read*') || Request::is('compose*') ? 'menu-open' : '' }}">
             <a href="#" class="nav-link {{ Request::is('mailbox*') || Request::is('read*') || Request::is('compose*') ? 'active' : '' }}">
               <i class="nav-icon bi bi-envelope"></i>
@@ -172,7 +216,7 @@
             </ul>
           </li>
 
-          <!-- Autentikasi / Profile & Logout (Muncul di Semua Halaman) -->
+          <!-- Autentikasi / Profile & Logout -->
           <li class="nav-header">AUTENTIKASI</li>
           
           <li class="nav-item">

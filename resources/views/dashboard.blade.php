@@ -70,7 +70,7 @@
     <!-- Brand Logo -->
     <div class="sidebar-brand">
       <a href="{{ url('/dashboard') }}" class="brand-link">
-        <span class="brand-text fw-light"><strong>AdminLTE 4</strong></span>
+        <span class="brand-text fw-light"><strong> BERHASIL </strong></span>
       </a>
     </div>
 
@@ -110,6 +110,33 @@
             </ul>
           </li>
 
+          <!-- Menu Widgets -->
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon bi bi-boxes"></i>
+              <p>
+                Widgets
+                <i class="nav-arrow bi bi-chevron-right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('infobox') }}" class="nav-link">
+                  <i class="nav-icon bi bi-circle"></i>
+                  <p>Info Box</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <!-- MENU GENRE (BARU DITAMBAHKAN) -->
+          <li class="nav-item">
+            <a href="{{ route('genre.index') }}" class="nav-link {{ request()->routeIs('genre*') ? 'active' : '' }}">
+              <i class="nav-icon bi bi-tags"></i>
+              <p>Genre</p>
+            </a>
+          </li>
+
           <!-- Menu Tables -->
           <li class="nav-item">
             <a href="#" class="nav-link">
@@ -143,7 +170,7 @@
             </a>
           </li>
 
-          <!-- Menu Mailbox (BARU DITAMBAHKAN) -->
+          <!-- Menu Mailbox -->
           <li class="nav-item">
             <a href="{{ url('/mailbox') }}" class="nav-link">
               <i class="nav-icon bi bi-envelope"></i>
