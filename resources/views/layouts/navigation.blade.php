@@ -1,20 +1,17 @@
-<!-- Sidebar Utama -->
 <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
-  <!-- Brand Logo -->
   <div class="sidebar-brand">
     <a href="{{ route('dashboard') }}" class="brand-link">
       <span class="brand-text fw-light">App Kelompok</span>
     </a>
   </div>
 
-  <!-- Sidebar Menu -->
   <div class="sidebar-wrapper">
     <nav class="mt-2">
       <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu" data-accordion="false">
 
         <!-- DASHBOARD -->
-        <li class="nav-item">
-          <a href="{{ route('dashboard') }}" class="nav-link {{ request()->routeIs('dashboard*') ? 'active' : '' }}">
+        <li class="nav-item {{ (request()->routeIs('dashboard') || request()->is('dashboard2') || request()->is('dashboard3')) ? 'menu-open' : '' }}">
+          <a href="#" class="nav-link {{ (request()->routeIs('dashboard') || request()->is('dashboard2') || request()->is('dashboard3')) ? 'active' : '' }}">
             <i class="nav-icon bi bi-speedometer"></i>
             <p>
               Dashboard
@@ -29,15 +26,40 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('dashboard2') }}" class="nav-link {{ request()->routeIs('dashboard2') ? 'active' : '' }}">
+              <a href="{{ url('/dashboard2') }}" class="nav-link {{ request()->is('dashboard2') ? 'active' : '' }}">
                 <i class="nav-icon bi bi-circle"></i>
                 <p>Dashboard v2</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="{{ route('dashboard3') }}" class="nav-link {{ request()->routeIs('dashboard3') ? 'active' : '' }}">
+              <a href="{{ url('/dashboard3') }}" class="nav-link {{ request()->is('dashboard3') ? 'active' : '' }}">
                 <i class="nav-icon bi bi-circle"></i>
                 <p>Dashboard v3</p>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- MASTER FILM -->
+        <li class="nav-item {{ (request()->routeIs('film.*') || request()->routeIs('genre.*')) ? 'menu-open' : '' }}">
+          <a href="#" class="nav-link {{ (request()->routeIs('film.*') || request()->routeIs('genre.*')) ? 'active' : '' }}">
+            <i class="nav-icon bi bi-tags"></i>
+            <p>
+              Master Film
+              <i class="nav-arrow bi bi-chevron-right"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{ route('genre.index') }}" class="nav-link {{ request()->routeIs('genre.*') ? 'active' : '' }}">
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Data Genre</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{ route('film.index') }}" class="nav-link {{ request()->routeIs('film.*') ? 'active' : '' }}">
+                <i class="nav-icon bi bi-circle"></i>
+                <p>Data Film</p>
               </a>
             </li>
           </ul>
@@ -118,10 +140,8 @@
           </ul>
         </li>
 
-        <!-- HEADER AUTENTIKASI -->
         <li class="nav-header">AUTENTIKASI</li>
 
-        <!-- PROFILE -->
         <li class="nav-item">
           <a href="{{ route('profile.edit') }}" class="nav-link {{ request()->routeIs('profile.edit') ? 'active' : '' }}">
             <i class="nav-icon bi bi-person"></i>
@@ -129,7 +149,6 @@
           </a>
         </li>
 
-        <!-- LOGOUT -->
         <li class="nav-item">
           <form method="POST" action="{{ route('logout') }}">
             @csrf
@@ -138,6 +157,13 @@
               <p>Logout</p>
             </a>
           </form>
+        </li>
+
+        <li class="nav-item">
+          <a href="{{ route('kritik.index') }}" class="nav-link {{ Request::is('kritik*') ? 'active' : '' }}">
+            <i class="nav-icon bi bi-circle"></i>
+            <p>Data Kritik</p>
+          </a>
         </li>
 
       </ul>

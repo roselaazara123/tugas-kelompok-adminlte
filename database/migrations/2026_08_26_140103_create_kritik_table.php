@@ -8,7 +8,7 @@ return new class extends Migration {
     public function up(): void {
         Schema::create('kritik', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('user')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('film_id')->constrained('film')->onDelete('cascade');
             $table->text('content');
             $table->integer('point');

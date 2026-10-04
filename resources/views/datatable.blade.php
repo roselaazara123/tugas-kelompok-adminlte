@@ -1,4 +1,4 @@
-
+@extends('layouts.app')s
 
 @section('title', 'Data Tables')
 

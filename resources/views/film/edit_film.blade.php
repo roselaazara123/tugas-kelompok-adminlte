@@ -20,7 +20,7 @@
                 <h3 class="card-title"><i class="bi bi-film me-2"></i>Form Tambah Film</h3>
             </div>
             <div class="card-body">
-                <form method="POST" action="{{ route('film.store') }}">
+                <form method="POST" action="{{ route('film.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label class="form-label">Judul</label>
@@ -45,6 +45,11 @@
                     <div class="mb-3">
                         <label class="form-label">Ringkasan</label>
                         <textarea name="ringkasan" class="form-control" rows="4">{{ old('ringkasan') }}</textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Poster</label>
+                        <input type="file" name="poster" class="form-control" accept="image/*">
                     </div>
 
                     <button type="submit" class="btn btn-success">Simpan</button>

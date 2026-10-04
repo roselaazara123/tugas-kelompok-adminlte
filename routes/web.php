@@ -77,6 +77,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
    Route::get('/film', [FilmController::class, 'index'])->name('film.index');
     Route::get('/film/create', [FilmController::class, 'create'])->name('film.create');
     Route::post('/film', [FilmController::class, 'store'])->name('film.store');
+
+    Route::get('/kritik', [KritikController::class, 'index'])->name('kritik.index');
+    Route::get('/kritik/create', [KritikController::class, 'create'])->name('kritik.create');
+    Route::post('/kritik', [KritikController::class, 'store'])->name('kritik.store');
 });
 
 // File Route Autentikasi (Breeze/Fortify)
